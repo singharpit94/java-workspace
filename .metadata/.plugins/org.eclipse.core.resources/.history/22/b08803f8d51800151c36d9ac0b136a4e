@@ -1,0 +1,34 @@
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Sending POST to GCM" );
+
+        String apiKey = "AIzaSyBCNYe9Keslvw3jq-bgbP2MR6tJk5s5GWw";
+        Content content = createContent();
+
+        POST2GCM.post(apiKey, content);
+    }
+
+    public static Content createContent(){
+
+        Content c = new Content();
+
+        c.addRegId("APA91bGaUgxi_oFFa68HSc_KGARbb7A6ursAlWzEgysNw5OXubTRKstyCgvKPkwYIkFk16lrQVykfv7_8X6Q6tF3spVxcr6a89nUpwpEJSCzqFN0y39nfGfMEjmu5uZNDO5ASib1nnk4SScsT6kUuq2TGEulCTlBpg");
+        c.createData("Test Title", "Test Message");
+
+        return c;
+    }
+}

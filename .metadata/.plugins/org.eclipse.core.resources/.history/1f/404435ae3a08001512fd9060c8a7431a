@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import org.omg.CORBA.portable.InputStream;
+ 
+public class HttpURLConnectionExample {
+	 public static void main(String[] args){
+	try {
+        URL url = new URL("http://10.132.198.204:8888");
+        HttpURLConnection httppost = (HttpURLConnection) url.openConnection();
+        httppost.setDoInput(true);
+        httppost.setDoOutput(true);
+        httppost.setRequestMethod("POST"); //set your method name ..it can be "Get" also
+//httppost.setRequestProperty("User-Agent", "UserAgent");//set user agent if there is any..
+//httppost.setInstanceFollowRedirects(true);//uncomment if required.
+//httppost.setRequestProperty("Connection", "Keep-Alive");//uncomment if required.
+        httppost.connect();
+
+
+        OutputStreamWriter outPutStream = new OutputStreamWriter(httppost.getOutputStream());
+
+        String postData = "Arpit";
+        outPutStream.write(postData);
+        outPutStream.flush();
+        outPutStream.close();
+
+///Handling the response...
+//Here I am expecting String data in response....it could be anything...so you have to handle accordingly..
+      
+
+       
+    } catch (IOException r) {
+        
+    }
+
+}
+}
+
